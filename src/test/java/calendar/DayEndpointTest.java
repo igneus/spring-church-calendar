@@ -28,7 +28,18 @@ public class DayEndpointTest {
                 String.class)).isEqualTo("{\"date\":\"2018-10-18\"}");
     }
 
+    @Test
+    public void shouldReturnExpectedDayData2() throws Exception {
+        assertThat(this.restTemplate.getForObject(this.endpointPath(2000, 7, 5),
+                String.class)).isEqualTo("{\"date\":\"2000-07-05\"}");
+    }
+
     protected String endpointPath() {
-        return "http://localhost:" + port + "/api/v1/calendars/general-en/2018/10/18";
+        return this.endpointPath(2018, 10, 18);
+    }
+
+    protected String endpointPath(int year, int month, int day) {
+        return "http://localhost:" + port + "/api/v1/calendars/general-en/" +
+                String.format("%d/%d/%d", year, month, day);
     }
 }
