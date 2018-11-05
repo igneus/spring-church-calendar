@@ -27,21 +27,23 @@ public class DayEndpointTest {
 
     @Test
     public void shouldReturnExpectedDayData() throws Exception {
-        this.mockMvc.perform(get(this.endpointPath())).andExpect(status().isOk())
-                .andExpect(content().string("{\"date\":\"2018-10-18\"}"));
+        this.successTest(this.endpointPath(), "{\"date\":\"2018-10-18\"}");
     }
 
     @Test
     public void shouldReturnExpectedDayData2() throws Exception {
-        this.mockMvc.perform(get(this.endpointPath(2000, 7, 5))).andExpect(status().isOk())
-                .andExpect(content().string("{\"date\":\"2000-07-05\"}"));
+        this.successTest(this.endpointPath(2000, 7, 5), "{\"date\":\"2000-07-05\"}");
     }
 
     @Test
     public void monthOverflow() throws Exception {
         // this is not behaviour we love, but Java behaves this way and there's no important requirement to change this
-        this.mockMvc.perform(get(this.endpointPath(2000, 7, 33))).andExpect(status().isOk())
-                .andExpect(content().string("{\"date\":\"2000-08-02\"}"));
+        this.successTest(this.endpointPath(2000, 7, 33), "{\"date\":\"2000-08-02\"}");
+    }
+
+    protected void successTest(String path, String resultBody) throws Exception {
+        this.mockMvc.perform(get(path)).andExpect(status().isOk())
+                .andExpect(content().string(resultBody));
     }
 
     protected String endpointPath() {
