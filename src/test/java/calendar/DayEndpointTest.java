@@ -34,6 +34,13 @@ public class DayEndpointTest {
                 String.class)).isEqualTo("{\"date\":\"2000-07-05\"}");
     }
 
+    @Test
+    public void monthOverflow() throws Exception {
+        // this is not behaviour we love, but Java behaves this way and there's no important requirement to change this
+        assertThat(this.restTemplate.getForObject(this.endpointPath(2000, 7, 33),
+                String.class)).isEqualTo("{\"date\":\"2000-08-02\"}");
+    }
+
     protected String endpointPath() {
         return this.endpointPath(2018, 10, 18);
     }
