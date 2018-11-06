@@ -6,7 +6,11 @@ with [Church Calendar API][churchcal] v0
 Instead of computing the calendar data,
 it has them pre-generated in the database.
 
-# Configuration
+## Status
+
+work in progress
+
+## Configuration
 
 In order to run the application, copy
 `src/main/resources/application.properties.dist`
@@ -14,7 +18,7 @@ to
 `src/main/resources/application.properties`
 and provide valid database connection string and credentials.
 
-# Compiling and running
+## Compiling and running
 
 This is a Spring project built using Maven.
 
