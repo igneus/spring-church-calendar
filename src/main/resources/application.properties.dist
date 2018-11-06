@@ -1,0 +1,8 @@
+# since the application only needs a single date serialization format, let's set it Jackson's default
+spring.jackson.date-format=yyyy-MM-dd
+
+# database configuration
+spring.jpa.hibernate.ddl-auto=create
+spring.datasource.url=YOUR_JDBC_CONNECTION_STRING
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
