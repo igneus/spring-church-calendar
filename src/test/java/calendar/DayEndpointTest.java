@@ -34,20 +34,20 @@ public class DayEndpointTest {
     @Test
     public void shouldReturnExpectedDayData() throws Exception {
         this.prepareData(2018, 10, 18);
-        this.successTest(this.endpointPath(), "{\"date\":\"2018-10-18\",\"season\":\"ordinary\",\"season_week\":1}");
+        this.successTest(this.endpointPath(), "{\"date\":\"2018-10-18\",\"season\":\"ordinary\",\"season_week\":1,\"weekday\":\"thursday\"}");
     }
 
     @Test
     public void shouldReturnExpectedDayData2() throws Exception {
         this.prepareData(2000, 7, 5);
-        this.successTest(this.endpointPath(2000, 7, 5), "{\"date\":\"2000-07-05\",\"season\":\"ordinary\",\"season_week\":1}");
+        this.successTest(this.endpointPath(2000, 7, 5), "{\"date\":\"2000-07-05\",\"season\":\"ordinary\",\"season_week\":1,\"weekday\":\"wednesday\"}");
     }
 
     @Test
     public void monthOverflow() throws Exception {
         // this is not behaviour we love, but Java behaves this way and there's no important requirement to change this
         this.prepareData(2000, 8, 2);
-        this.successTest(this.endpointPath(2000, 7, 33), "{\"date\":\"2000-08-02\",\"season\":\"ordinary\",\"season_week\":1}");
+        this.successTest(this.endpointPath(2000, 7, 33), "{\"date\":\"2000-08-02\",\"season\":\"ordinary\",\"season_week\":1,\"weekday\":\"wednesday\"}");
     }
 
     @Test

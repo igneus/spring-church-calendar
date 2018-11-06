@@ -1,7 +1,9 @@
 package calendar;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -65,5 +67,10 @@ public class Day {
 
     public void setSeasonWeek(int seasonWeek) {
         this.seasonWeek = seasonWeek;
+    }
+
+    public String getWeekday() {
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        return formatter.format(this.date.getTime()).toLowerCase();
     }
 }
