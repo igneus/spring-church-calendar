@@ -1,3 +1,4 @@
+spring.jackson.property-naming-strategy=SNAKE_CASE
 # since the application only needs a single date serialization format, let's set it Jackson's default
 spring.jackson.date-format=yyyy-MM-dd
 

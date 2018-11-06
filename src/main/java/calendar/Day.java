@@ -19,10 +19,20 @@ public class Day {
 
     private Calendar date = new GregorianCalendar();
 
+    private Season season = Season.ORDINARY;
+
+    private int seasonWeek = 1;
+
     public Day() {}
 
     public Day(Calendar date) {
         this.date = date;
+    }
+
+    public Day(Calendar date, Season season, int seasonWeek) {
+        this.date = date;
+        this.season = season;
+        this.seasonWeek = seasonWeek;
     }
 
     public Integer getId() {
@@ -39,5 +49,21 @@ public class Day {
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
+
+    public int getSeasonWeek() {
+        return seasonWeek;
+    }
+
+    public void setSeasonWeek(int seasonWeek) {
+        this.seasonWeek = seasonWeek;
     }
 }
