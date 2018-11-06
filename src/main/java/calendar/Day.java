@@ -1,14 +1,15 @@
 package calendar;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,6 +25,9 @@ public class Day {
     private Season season = Season.ORDINARY;
 
     private int seasonWeek = 1;
+
+    @OneToMany(mappedBy="day", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Celebration> celebrations = new ArrayList<>(3);
 
     public Day() {}
 
@@ -72,5 +76,14 @@ public class Day {
     public String getWeekday() {
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
         return formatter.format(this.date.getTime()).toLowerCase();
+    }
+
+    public List<Celebration> getCelebrations() {
+        return celebrations;
+    }
+
+    public void addCelebration(Celebration celebration) {
+        this.celebrations.add(celebration);
+        celebration.setDay(this);
     }
 }
